@@ -11,9 +11,6 @@ const PORT = process.env.PORT || 3000;
 
 // Initialize Express
 const app = express();
-
-// Config middleware
-// Use morgan logger for logging requests
 app.use(logger('dev'));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
@@ -29,15 +26,18 @@ app.get('/scrape', async function(req, res) {
   const response = await axios.get('http://www.wowhead.com');
   // then use cherrio
   const $ = cheerio.load(response.data);
-  $('article h2').each(function(i, element) {
+  $('div.news-post-header-title-group').each(function(i, element) {
     const result = {};
     result.title = $(this)
-        .children('a')
+        .first()
+        .first()
         .text();
     result.link = $(this)
+        .first()
         .children('a')
         .attr('href');
-    //
+    console.log($(element));
+    console.log(result);
     db.Article.create(result)
         .then(function(dbArticle) {
           console.log(dbArticle);
