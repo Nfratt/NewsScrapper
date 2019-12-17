@@ -28,12 +28,12 @@ app.get('/scrape', async function(req, res) {
   const $ = cheerio.load(response.data);
   $('div.news-post-header-title-group').each(function(i, element) {
     const result = {};
-    result.title = $(this)
+    result.title = $(element)
         .first()
         .first()
         .text();
-    result.link = $(this)
-        .first()
+    result.link = $(element)
+        .children('h1')
         .children('a')
         .attr('href');
     console.log($(element));
