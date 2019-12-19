@@ -1,5 +1,4 @@
 // get articles
-
 $.getJSON('/api/articles', function(data) {
   for (let i = 0; i < data.length; i++) {
     // Display the articles
