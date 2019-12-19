@@ -11,7 +11,7 @@ $.getJSON('/api/articles', function(data) {
 });
 
 $(document).on('click', 'p', function() {
-  $('#notes').empty();
+  $('#comments').empty();
   const thisId = $(this).attr('data-id');
   $.ajax({
     method: 'GET',
@@ -19,10 +19,10 @@ $(document).on('click', 'p', function() {
   })
       .then(function(data) {
         console.log(data);
-        $('#notes').append('<h2>' + data.title + '</h2>');
-        $('#notes').append('<input id=\'titleinput\' name=\'title\' >');
-        $('#notes').append('<textarea id=\'bodyinput\' name=\'body\'></textarea>');
-        $('#notes').append('<button data-id=\'' + data._id + '\' id=\'savecomment\'>Save comment</button>');
+        $('#comments').append('<h2>' + data.title + '</h2>');
+        $('#comments').append('<input id=\'titleinput\' name=\'title\' >');
+        $('#comments').append('<textarea id=\'bodyinput\' name=\'body\'></textarea>');
+        $('#comments').append('<button data-id=\'' + data._id + '\' id=\'savecomment\'>Save comment</button>');
         if (data.comment) {
           $('#titleinput').val(data.comment.title);
           $('#bodyinput').val(data.comment.body);
