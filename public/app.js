@@ -20,8 +20,8 @@ $(document).on('click', 'p', function() {
       .then(function(data) {
         console.log(data);
         $('#comments').append('<h2>' + data.title + '</h2>');
-        $('#comments').append('<input id=\'titleinput\' name=\'title\' >');
-        $('#comments').append('<textarea id=\'bodyinput\' name=\'body\'></textarea>');
+        $('#comments').append('<input id=\'titleinput\' name=\'title\' placeholder= \'Username\'>');
+        $('#comments').append('<textarea id=\'bodyinput\' name=\'body\'placeholder= \'what did you think about this article?\'></textarea>');
         $('#comments').append('<button data-id=\'' + data._id + '\' id=\'savecomment\'>Save comment</button>');
         if (data.comment) {
           $('#titleinput').val(data.comment.title);
