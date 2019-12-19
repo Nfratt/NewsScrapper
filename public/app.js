@@ -1,15 +1,17 @@
 // get articles
-$.getJSON('/api/articles', function(data) {
-  for (let i = 0; i < data.length; i++) {
+$('#scrapebutton').on('click', function() {
+  $.getJSON('/api/articles', function(data) {
+    for (let i = 0; i < data.length; i++) {
     // Display the articles
-    $('#articles').append(`
+      $('#articles').append(`
       <p style="cursor:pointer" data-id="${data[i]._id}">${data[i].title}<br />
       <a href="${data[i].link}" target="_blank">&#9758;
       Click here for the article</a>
       </p>
       
       `);
-  }
+    }
+  });
 });
 
 $(document).on('click', 'p', function() {
