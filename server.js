@@ -17,7 +17,11 @@ app.use(express.json());
 app.use(express.static('public'));
 
 // MongoDB
-mongoose.connect('mongodb://localhost/wowheadnewspop', {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
+mongoose.connect(process.env.NODE_ENV==='production'? process.env.MONGODB_URI:'mongodb://localhost/wowheadnewspop',
+    {useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    });
 
 // Routes
 // scrapper
